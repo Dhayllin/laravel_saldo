@@ -108,12 +108,30 @@ return [
     */
 
     'menu' => [
-        'MENU',    
+        //'MENU',    
         [
-            'text'        => 'HOME',
-            'url'         => 'admin/pages',
-            'icon'        => 'home',           
+            'text'        => 'Dashboard',
+            'url'         => 'admin',
+            'icon'        => 'dashboard'         
         ],
+        [
+            'text'        => 'Finaceiro',           
+            'icon'        => 'money',
+            'submenu'     => [
+                [
+                    'text'        => 'Saldo',
+                    'url'         => 'admin/balance',
+                    'icon'        => 'credit-card-alt'
+                ],
+                [
+                    'text'        => 'Histórico',
+                    'url'         => 'admin/historic',
+                    'icon'        => 'history'
+                ]
+            ] 
+
+
+        ]
        
     ],
 

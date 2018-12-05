@@ -7,5 +7,5 @@
 @stop
 
 @section('content')
-    <p>You are logged in!</p>
+    <p>Logado!</p>
 @stop
