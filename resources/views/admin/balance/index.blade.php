@@ -15,10 +15,13 @@
         <div class="box-header">
         <a class="btn btn-primary" href="{{ route('balance.deposit')}}"> <i class="fa fa-cart-plus"></i>
                 Recarregar</a>
-            <a class="btn btn-danger" href=""> <i class="fa fa-cart-arrow-down"></i>
+            @if($amout > 0)
+        <a class="btn btn-danger" href="{{ route('balance.withdraw')}}"> <i class="fa fa-cart-arrow-down"></i>
                 Sacar</a>
+            @endif
         </div>
         <div class="box-body">
+                @include('admin.includes.alerts')   
                 <div class="small-box bg-green">
                     <div class="inner">
                         <h3>R$ {{ number_format($amout,2,',','')}}</h3>
