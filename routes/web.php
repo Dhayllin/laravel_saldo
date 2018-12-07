@@ -17,8 +17,11 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix'=>'admin
     Route::post('deposit','BalanceController@depositStore')->name('deposit.store');
     Route::get('withdraw','BalanceController@withdraw')->name('balance.withdraw');
     Route::post('withdraw','BalanceController@withdrawStore')->name('withdraw.store');
-    
-    
+    Route::get('transfer','BalanceController@transfer')->name('balance.transfer');
+    Route::post('confirm-transfer','BalanceController@confirmTransfer')->name('confirm.transfer');  
+    Route::post('transfer','BalanceController@transferStore')->name('transfer.store');  
+    Route::get('historic','BalanceController@historic')->name('admin.historic');
+
 });
 
 Route::get('/','Site\SiteController@index')->name('home');

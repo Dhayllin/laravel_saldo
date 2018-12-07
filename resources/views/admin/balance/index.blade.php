@@ -16,9 +16,14 @@
         <a class="btn btn-primary" href="{{ route('balance.deposit')}}"> <i class="fa fa-cart-plus"></i>
                 Recarregar</a>
             @if($amout > 0)
-        <a class="btn btn-danger" href="{{ route('balance.withdraw')}}"> <i class="fa fa-cart-arrow-down"></i>
-                Sacar</a>
+                <a class="btn btn-danger" href="{{ route('balance.withdraw')}}"> <i class="fa fa-cart-arrow-down"></i>
+                        Sacar</a>
+            @endif 
+            @if($amout > 0)
+                <a class="btn btn-info" href="{{ route('balance.transfer')}}"> <i class="fa fa-exchange-alt"></i>
+                        Transferir</a>
             @endif
+
         </div>
         <div class="box-body">
                 @include('admin.includes.alerts')   
