@@ -11,7 +11,6 @@
     </ol>
 @stop
 
-
 @section('content')
 <div class="box">
         <div class="box-header">

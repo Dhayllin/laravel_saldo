@@ -58,7 +58,7 @@ class Balance extends Model
         $withdraw = $this->save();
         
         $historic = auth()->user()->historics()->create([
-            'type'          => 'I', 
+            'type'          => 'O', 
             'amout'         =>  $value, 
             'total_before'  => $beforeTotal,
             'total_after'   => $this->amout,           
@@ -112,7 +112,7 @@ class Balance extends Model
           $transferSender = $senderBalance->save();
           
           $historicSender = $sender->historics()->create([
-              'type'               => 'T', 
+              'type'               => 'I', 
               'amout'              =>  $value, 
               'total_before'       => $totalBeforeSender,
               'total_after'        => $senderBalance->amout,           
