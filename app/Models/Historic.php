@@ -44,6 +44,10 @@ class Historic extends Model
         return $this->belongsTo(User::class,'user_id_trasaction');
     }
 
+    public function scopeUserAuth($query){
+        return $query->where('user_id',auth()->user()->id);
+    }
+
     public function search(Array $data, $totalPage){
 
         return   $this->where(function ($query) use ($data){
@@ -56,6 +60,9 @@ class Historic extends Model
             if(isset($data['type']))
                 $query->where('type',$data['type']);
         })//->toSql();dd($historics);
+          //->where('user_id',auth()->user()->id)
+        ->userAuth()
+        ->with(['userSender'])
         ->paginate($totalPage);
     }
 }
