@@ -12,4 +12,8 @@ class UserController extends Controller
 
         return view('site.profile.profile');
     }
+
+    public function profileUpdate(Request $request){
+       dd($request->all());
+    }
 }
