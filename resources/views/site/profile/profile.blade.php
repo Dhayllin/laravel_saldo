@@ -16,7 +16,7 @@
         {{ session('error')}}
     </div>
 @endif
-<form action="{{ route('profile.update') }}" method="post">
+<form action="{{ route('profile.update') }}" method="post" enctype="multipart/form-data">
     
         {{ csrf_field() }}
 
