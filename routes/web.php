@@ -10,9 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+use App\Http\Middleware\CheckAuthorized;
+
 Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix'=>'admin'], function(){
     Route::get('/','AdminController@index')->name('admin.home');
-    Route::get('balance','BalanceController@index')->name('admin.balance');
+    Route::get('balance','BalanceController@index')->name('admin.balance')->middleware(CheckAuthorized::class);;
 
     Route::get('deposit','BalanceController@deposit')->name('balance.deposit');
     Route::post('deposit','BalanceController@depositStore')->name('deposit.store');
@@ -24,7 +27,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix'=>'admin
     Route::post('confirm-transfer','BalanceController@confirmTransfer')->name('confirm.transfer');  
     Route::post('transfer','BalanceController@transferStore')->name('transfer.store');  
 
-    Route::get('historic','BalanceController@historic')->name('admin.historic');
+    Route::get('historic','BalanceController@historic')->name('admin.historic')->middleware(CheckAuthorized::class);
     Route::any('historic-search','BalanceController@searchHistoric')->name('historic.search');
 
 });
