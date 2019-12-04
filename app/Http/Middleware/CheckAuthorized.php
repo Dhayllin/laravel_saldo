@@ -15,9 +15,9 @@ class CheckAuthorized
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->user()->authorized == 1) {
+        if (auth()->user()->authorized == 0) {
             return  $next($request);
         }
-        return redirect('admin');
+        return redirect('/');
     }
 }
