@@ -42,6 +42,6 @@ DB_PASSWORD=secret
 
 ```
 
-Em rodar as migrations com:
+E rodar as migrations com:
 
 <code> php artisan migrate --seed </code>
