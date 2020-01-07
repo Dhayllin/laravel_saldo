@@ -129,9 +129,12 @@ return [
                     'icon'        => 'history'
                 ]
             ] 
-
-
-        ]
+        ],
+        [
+            'text'        => 'Telescope',
+            'url'         => 'telescope',
+            'icon'        => 'moon'         
+        ],
        
     ],
 
