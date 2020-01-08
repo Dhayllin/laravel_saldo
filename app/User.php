@@ -39,7 +39,7 @@ class User extends Authenticatable
     }
 
     public function getSender($sender){
-
+      
         return $this->where('name', 'LIKE',"%$sender%")
                 ->orWhere('email',$sender)
                 ->get()

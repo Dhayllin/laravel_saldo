@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\Historic;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -16,9 +18,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        Historic::created(function () {
-                Historic::updated('user_id_trasaction',3);  
-                return 0;      
+        Historic::created(function ($historic) {
+            if ($historic->check() == true) {
+                Log::info('Passando no IFeeee Provider', ['id' => Auth::id()]);    
+                return false;
+            }
+            Log::info('Passando no ELSEee Provider', ['id' => Auth::id()]);    
         });
     }
 

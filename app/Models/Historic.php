@@ -65,4 +65,8 @@ class Historic extends Model
         ->with(['userSender'])
         ->paginate($totalPage);
     }
+
+    public function check(){      
+        return true;
+    }
 }
