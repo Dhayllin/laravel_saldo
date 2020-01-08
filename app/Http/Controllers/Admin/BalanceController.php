@@ -9,6 +9,7 @@ use App\Models\Historic;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MoneyValidationFormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class BalanceController extends Controller
@@ -120,5 +121,15 @@ class BalanceController extends Controller
        $types = $historic->type();
 
        return view('admin.balance.historics',compact('historics','types','dataForm'));
+    }
+
+    public function testWhere(){
+
+        $historics = DB::table('historics')
+            ->where('type','O')
+            ->whereIn('amout',[100,200,10])
+            ->get();
+
+        return  $historics;
     }
 }

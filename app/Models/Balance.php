@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
+use App\Models\Historic;
 use DB;
 
 class Balance extends Model
@@ -20,7 +21,7 @@ class Balance extends Model
         
         $historic = auth()->user()->historics()->create([
             'type'          => 'I', 
-            'amout'         =>  $value, 
+            'amout'         => $value, 
             'total_before'  => $beforeTotal,
             'total_after'   => $this->amout,           
             'date'          => date('Ymd')
@@ -98,7 +99,7 @@ class Balance extends Model
         
         $historic = auth()->user()->historics()->create([
             'type'               => 'T', 
-            'amout'              =>  $value, 
+            'amout'              => $value, 
             'total_before'       => $beforeTotal,
             'total_after'        => $this->amout,           
             'date'               => date('Ymd'),
@@ -113,7 +114,7 @@ class Balance extends Model
           
           $historicSender = $sender->historics()->create([
               'type'               => 'I', 
-              'amout'              =>  $value, 
+              'amout'              => $value, 
               'total_before'       => $totalBeforeSender,
               'total_after'        => $senderBalance->amout,           
               'date'               => date('Ymd'),

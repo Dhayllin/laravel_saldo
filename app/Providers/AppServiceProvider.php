@@ -18,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+        
         Historic::created(function ($historic) {
             if ($historic->check() == true) {
                 Log::info('Passando no IFeeee Provider', ['id' => Auth::id()]);    

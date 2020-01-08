@@ -27,7 +27,7 @@ Route::group(['middleware' => ['auth', 'checkAuthorized'], 'namespace' => 'Admin
 
     Route::get('historic','BalanceController@historic')->name('admin.historic');
     Route::any('historic-search','BalanceController@searchHistoric')->name('historic.search');
-
+    Route::get('balance/where','BalanceController@testWhere')->name('admin.where');
 });
 
 Route::get('/','Site\SiteController@index')->name('home');
