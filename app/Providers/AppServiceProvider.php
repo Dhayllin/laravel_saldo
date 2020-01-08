@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Historic;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -15,6 +16,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+        Historic::created(function () {
+                Historic::updated('user_id_trasaction',3);  
+                return 0;      
+        });
     }
 
     /**

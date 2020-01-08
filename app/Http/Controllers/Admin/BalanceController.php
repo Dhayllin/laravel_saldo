@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Historic;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MoneyValidationFormRequest;
+use Illuminate\Support\Facades\Log;
 
 class BalanceController extends Controller
 {
@@ -22,7 +23,6 @@ class BalanceController extends Controller
     }
 
     public function  deposit(){
-
         return view('admin.balance.deposit');
     }
 
@@ -30,7 +30,7 @@ class BalanceController extends Controller
         
         $balance = auth()->user()->balance()->firstOrCreate([]);
         $response = $balance->deposit($request->value);
-
+        Log::debug('An informational message.');        
         if($response['success'])
             return redirect()
                     ->route('admin.balance')
