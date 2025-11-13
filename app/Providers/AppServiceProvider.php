@@ -38,14 +38,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(PackageManifest::class, function ($app) {
-            $files = $app->make(Filesystem::class);
-
-            return new Composer2PackageManifest(
-                $files,
-                $app->basePath(),
-                $app->getCachedPackagesPath()
-            );
-        });
     }
 }
