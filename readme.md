@@ -19,8 +19,12 @@ Considere que você esteja em um sistema operacional Linux ou Windows com o Git 
 2. **Instale as dependências e o framework**
 
    ```bash
-   composer install --no-scripts
+   composer install --no-scripts --ignore-platform-reqs
    ```
+
+   > **Nota:** o projeto utiliza Laravel 5.7, que requer PHP 7.1. O parâmetro
+   > `--ignore-platform-reqs` evita falhas quando a instalação é realizada em
+   > ambientes com PHP mais recente (por exemplo, 8.x).
 
 3. **Copie o arquivo `.env.example`**
 
@@ -55,7 +59,7 @@ Considere que você esteja em um sistema operacional Linux ou Windows com o Git 
 
 O projeto fornece um ambiente Docker que automatiza toda a preparação descrita acima. Ao executar o comando abaixo, o container da aplicação irá:
 
-- instalar as dependências com `composer install --no-scripts`;
+- instalar as dependências com `composer install --no-scripts --ignore-platform-reqs`;
 - garantir que o arquivo `.env` exista e esteja configurado com as variáveis de banco de dados listadas anteriormente;
 - gerar a chave da aplicação;
 - executar `php artisan migrate --seed` automaticamente.

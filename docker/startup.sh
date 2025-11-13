@@ -6,7 +6,12 @@ set -e
 : "${FORGE_PHP_FPM:=php-fpm}"
 
 # Install PHP dependencies.
-$FORGE_COMPOSER install --no-interaction --no-scripts --prefer-dist
+#
+# Laravel 5.7 requires PHP 7.1, which may not match the runtime version in the
+# container (e.g. PHP 8.x). Using --ignore-platform-reqs ensures Composer does
+# not abort when the PHP version differs from the constraint declared in
+# composer.json.
+$FORGE_COMPOSER install --no-interaction --no-scripts --prefer-dist --ignore-platform-reqs
 
 # Ensure the application environment file exists and is configured.
 if [ ! -f .env ] && [ -f .env.example ]; then
