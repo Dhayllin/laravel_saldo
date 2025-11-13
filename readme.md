@@ -22,9 +22,15 @@ Considere que você esteja em um sistema operacional Linux ou Windows com o Git 
    composer install --no-scripts --ignore-platform-reqs
    ```
 
-   > **Nota:** o projeto utiliza Laravel 5.7, que requer PHP 7.1. O parâmetro
-   > `--ignore-platform-reqs` evita falhas quando a instalação é realizada em
-   > ambientes com PHP mais recente (por exemplo, 8.x).
+   > **Notas:**
+   >
+   > - O projeto utiliza Laravel 5.7, que requer PHP 7.1. O parâmetro
+   >   `--ignore-platform-reqs` evita falhas quando a instalação é realizada em
+   >   ambientes com PHP mais recente (por exemplo, 8.x).
+   > - A aplicação já possui uma correção para lidar com o formato de metadados
+   >   gerado pelo Composer 2. Caso encontre o erro `Undefined index: name` ao
+   >   executar comandos Artisan, certifique-se de ter instalado as dependências
+   >   recentemente para que o cache seja reconstruído com os novos metadados.
 
 3. **Copie o arquivo `.env.example`**
 
