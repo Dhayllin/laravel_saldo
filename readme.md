@@ -1,47 +1,52 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg" alt="Laravel"></p>
 
-#  Sistema de Saldo com Laravel
+# Sistema de Saldo com Laravel
 
-Algumas pastas estão ignoradas pelo .gitignore.
+Algumas pastas estão ignoradas pelo `.gitignore`.
 
-Levando em consideração que você tenha o <code> php </code> e <code> composer </code> na sua variável global PATH, para uma nova instalação do Laravel.
+Certifique-se de ter `php` e `composer` configurados na sua variável global `PATH` para realizar uma nova instalação do Laravel.
 
+## Clonando o projeto
 
-# Clonando o projeto 
+Considere que você esteja em um sistema operacional Linux ou Windows com o Git instalado e execute os passos a seguir:
 
-Vou  considerar que você esteja rodando um sistema operacional Linux/Windows e com o git instalado, faça o seguinte:
+1. **Clone o projeto**
 
-<strong> Clone o projeto</strong> <br>
-<code>  git clone  https://github.com/Dhayllin/laravel_saldo.git  </code> 
-<br>
+   ```bash
+   git clone https://github.com/Dhayllin/laravel_saldo.git
+   ```
 
-<strong> Instale as dependências e o framework</strong>
-<br>
-<code>
-composer install --no-scripts
-</code>
+2. **Instale as dependências e o framework**
 
-<strong>Copie o arquivo .env.example</strong>
-<br>
-<code> cp .env.example .env </code>
+   ```bash
+   composer install --no-scripts
+   ```
 
-<strong> Crie uma nova chave para a aplicação</strong>
-<br>
-<code>php artisan key:generate</code>
+3. **Copie o arquivo `.env.example`**
 
-Alterar as configurações do seu .env para
+   ```bash
+   cp .env.example .env
+   ```
 
-```
+4. **Crie uma nova chave para a aplicação**
 
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=homestead
-DB_USERNAME=homestead
-DB_PASSWORD=secret
+   ```bash
+   php artisan key:generate
+   ```
 
-```
+5. **Atualize o arquivo `.env`** com as configurações abaixo:
 
-E rodar as migrations com:
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=homestead
+   DB_USERNAME=homestead
+   DB_PASSWORD=secret
+   ```
 
-<code> php artisan migrate --seed </code>
+6. **Execute as migrations e os seeders**
+
+   ```bash
+   php artisan migrate --seed
+   ```
