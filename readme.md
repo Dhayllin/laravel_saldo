@@ -50,3 +50,20 @@ Considere que você esteja em um sistema operacional Linux ou Windows com o Git 
    ```bash
    php artisan migrate --seed
    ```
+
+## Executando com Docker
+
+O projeto fornece um ambiente Docker que automatiza toda a preparação descrita acima. Ao executar o comando abaixo, o container da aplicação irá:
+
+- instalar as dependências com `composer install --no-scripts`;
+- garantir que o arquivo `.env` exista e esteja configurado com as variáveis de banco de dados listadas anteriormente;
+- gerar a chave da aplicação;
+- executar `php artisan migrate --seed` automaticamente.
+
+Para iniciar o ambiente, utilize:
+
+```bash
+docker-compose up --build
+```
+
+Após o container subir, a aplicação estará disponível em `http://localhost:8000`.
