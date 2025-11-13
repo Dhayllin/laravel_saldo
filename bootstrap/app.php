@@ -41,6 +41,19 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+$app->singleton(
+    Illuminate\Foundation\PackageManifest::class,
+    function ($app) {
+        $files = new Illuminate\Filesystem\Filesystem();
+
+        return new App\Support\Composer2PackageManifest(
+            $files,
+            $app->basePath(),
+            $app->getCachedPackagesPath()
+        );
+    }
+);
+
 /*
 |--------------------------------------------------------------------------
 | Return The Application
