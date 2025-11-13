@@ -44,7 +44,7 @@ $app->singleton(
 $app->singleton(
     Illuminate\Foundation\PackageManifest::class,
     function ($app) {
-        $files = $app->make(Illuminate\Filesystem\Filesystem::class);
+        $files = new Illuminate\Filesystem\Filesystem();
 
         return new App\Support\Composer2PackageManifest(
             $files,

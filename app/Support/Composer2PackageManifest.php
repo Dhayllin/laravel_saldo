@@ -147,6 +147,16 @@ class Composer2PackageManifest extends PackageManifest
                 $package['name'] = $package['pretty_name'];
             }
 
+            if (isset($package['extra']['laravel']['providers'])) {
+                $package['extra']['laravel']['providers'] = $this->normalizeProviders(
+                    $package['extra']['laravel']['providers']
+                );
+            }
+
+            if (isset($package['extra']['laravel']['aliases']) && ! is_array($package['extra']['laravel']['aliases'])) {
+                $package['extra']['laravel']['aliases'] = [];
+            }
+
             return isset($package['name']) ? $package : null;
         }, $packages)));
     }
@@ -161,5 +171,26 @@ class Composer2PackageManifest extends PackageManifest
         }
 
         return array_keys($array) === range(0, count($array) - 1);
+    }
+
+    /**
+     * Normalize provider declarations into an array of class strings.
+     *
+     * @param  mixed  $providers
+     * @return array<int, string>
+     */
+    protected function normalizeProviders($providers)
+    {
+        if (is_string($providers)) {
+            return [$providers];
+        }
+
+        if (! is_array($providers)) {
+            return [];
+        }
+
+        return array_values(array_filter($providers, function ($provider) {
+            return is_string($provider) && $provider !== '';
+        }));
     }
 }
