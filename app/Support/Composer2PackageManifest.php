@@ -60,11 +60,29 @@ class Composer2PackageManifest extends PackageManifest
             return $this->mapPackageNames($packages);
         }
 
-        if (isset($installed[0])) {
-            return $this->mapPackageNames($installed);
+        if ($this->isSequentialArray($installed)) {
+            $packages = [];
+
+            foreach ($installed as $section) {
+                if (! is_array($section)) {
+                    continue;
+                }
+
+                if (isset($section['packages']) && is_array($section['packages'])) {
+                    $packages = array_merge($packages, $section['packages']);
+                } elseif (isset($section['name'])) {
+                    $packages[] = $section;
+                }
+
+                if (isset($section['packages-dev']) && is_array($section['packages-dev'])) {
+                    $packages = array_merge($packages, $section['packages-dev']);
+                }
+            }
+
+            return $this->mapPackageNames($packages);
         }
 
-        return [];
+        return $this->mapPackageNames((array) $installed);
     }
 
     /**
@@ -125,7 +143,23 @@ class Composer2PackageManifest extends PackageManifest
                 $package['name'] = $package['package'];
             }
 
+            if (! isset($package['name']) && isset($package['pretty_name'])) {
+                $package['name'] = $package['pretty_name'];
+            }
+
             return isset($package['name']) ? $package : null;
         }, $packages)));
+    }
+
+    /**
+     * Determine if the given array is sequential.
+     */
+    protected function isSequentialArray($array)
+    {
+        if (! is_array($array)) {
+            return false;
+        }
+
+        return array_keys($array) === range(0, count($array) - 1);
     }
 }
