@@ -19,18 +19,12 @@ Considere que você esteja em um sistema operacional Linux ou Windows com o Git 
 2. **Instale as dependências e o framework**
 
    ```bash
-   composer install --no-scripts --ignore-platform-reqs
+   composer install --no-scripts
    ```
 
-   > **Notas:**
-   >
-   > - O projeto utiliza Laravel 5.7, que requer PHP 7.1. O parâmetro
-   >   `--ignore-platform-reqs` evita falhas quando a instalação é realizada em
-   >   ambientes com PHP mais recente (por exemplo, 8.x).
-   > - A aplicação já possui uma correção para lidar com o formato de metadados
-   >   gerado pelo Composer 2. Caso encontre o erro `Undefined index: name` ao
-   >   executar comandos Artisan, certifique-se de ter instalado as dependências
-   >   recentemente para que o cache seja reconstruído com os novos metadados.
+   > **Nota:** o Laravel 5.7 espera uma versão do PHP entre 7.1 e 7.4.
+   > Caso utilize outra versão localmente, considere rodar o projeto via Docker
+   > (ver seção abaixo) para garantir compatibilidade.
 
 3. **Copie o arquivo `.env.example`**
 
@@ -65,7 +59,7 @@ Considere que você esteja em um sistema operacional Linux ou Windows com o Git 
 
 O projeto fornece um ambiente Docker que automatiza toda a preparação descrita acima. Ao executar o comando abaixo, o container da aplicação irá:
 
-- instalar as dependências com `composer install --no-scripts --ignore-platform-reqs`;
+- instalar as dependências com `composer install --no-scripts` utilizando PHP 7.2;
 - garantir que o arquivo `.env` exista e esteja configurado com as variáveis de banco de dados listadas anteriormente;
 - gerar a chave da aplicação;
 - executar `php artisan migrate --seed` automaticamente.
