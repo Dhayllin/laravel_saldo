@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Historic;
+use App\Support\Composer2PackageManifest;
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Foundation\PackageManifest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
