@@ -11,10 +11,14 @@ services:
       DB_DATABASE: laravel
       DB_USERNAME: laravel
       DB_PASSWORD: secret
+      FORGE_COMPOSER: composer
+      FORGE_PHP: php
+      FORGE_PHP_FPM: php-fpm
     volumes:
       - ./:/app
     ports:
       - "8000:80"
+    command: ["/app/docker/startup.sh"]
     depends_on:
       - mysql
       - redis
