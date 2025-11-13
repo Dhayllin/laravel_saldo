@@ -32,6 +32,41 @@ class Composer2PackageManifest extends PackageManifest
     }
 
     /**
+     * Retrieve the packages keyed by their name as Laravel expects.
+     *
+     * Laravel 5.7's base implementation assumes the Composer metadata
+     * already contains a valid "name" attribute. Composer 2 stores the
+     * metadata in a different structure which omits that key in some
+     * contexts, so we rebuild the array using the sanitized package list.
+     *
+     * @return array<string, array<string, mixed>>
+     */
+    protected function getPackages()
+    {
+        if ($this->packages !== null) {
+            return $this->packages;
+        }
+
+        $packages = [];
+
+        foreach ($this->getInstalledPackages() as $package) {
+            if (! is_array($package)) {
+                continue;
+            }
+
+            $name = $package['name'] ?? null;
+
+            if (! is_string($name) || $name === '') {
+                continue;
+            }
+
+            $packages[$name] = $package;
+        }
+
+        return $this->packages = $packages;
+    }
+
+    /**
      * Normalize package information from Composer's installed.json file.
      *
      * @return array<int, array<string, mixed>>
