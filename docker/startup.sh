@@ -8,6 +8,9 @@ set -e
 # Install PHP dependencies matching the container runtime.
 $FORGE_COMPOSER install --no-interaction --no-scripts --prefer-dist
 
+# Ensure writable permissions on required directories by setting ownership.
+chown -R "$(id -u)":"$(id -g)" storage bootstrap/cache 2>/dev/null || true
+
 # Ensure the application environment file exists and is configured.
 if [ ! -f .env ] && [ -f .env.example ]; then
   cp .env.example .env
