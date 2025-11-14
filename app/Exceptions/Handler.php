@@ -4,6 +4,9 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Kreait\Firebase\Exception\Database\DatabaseError;
+use Kreait\Firebase\Exception\Database\ReferenceNotFound;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -46,6 +49,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof ReferenceNotFound) {
+            throw new NotFoundHttpException('The requested Firebase resource could not be found.', $exception);
+        }
+
+        if ($exception instanceof DatabaseError && $exception->getMessage() === '404 Not Found') {
+            throw new NotFoundHttpException('The requested Firebase resource could not be found.', $exception);
+        }
+
         return parent::render($request, $exception);
     }
 }
