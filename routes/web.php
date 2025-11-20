@@ -13,21 +13,21 @@
 
 Route::group(['middleware' => ['auth', 'checkAuthorized'], 'namespace' => 'Admin', 'prefix'=>'admin'], function(){
     Route::get('/','AdminController@index')->name('admin.home');
-    Route::get('balance','BalanceController@index')->name('admin.balance');
+    Route::get('balance','FirebaseService@index')->name('admin.balance');
 
-    Route::get('deposit','BalanceController@deposit')->name('balance.deposit');
-    Route::post('deposit','BalanceController@depositStore')->name('deposit.store');
+    Route::get('deposit','FirebaseService@deposit')->name('balance.deposit');
+    Route::post('deposit','FirebaseService@depositStore')->name('deposit.store');
 
-    Route::get('withdraw','BalanceController@withdraw')->name('balance.withdraw');
-    Route::post('withdraw','BalanceController@withdrawStore')->name('withdraw.store');
+    Route::get('withdraw','FirebaseService@withdraw')->name('balance.withdraw');
+    Route::post('withdraw','FirebaseService@withdrawStore')->name('withdraw.store');
 
-    Route::get('transfer','BalanceController@transfer')->name('balance.transfer');
-    Route::post('confirm-transfer','BalanceController@confirmTransfer')->name('confirm.transfer');  
-    Route::post('transfer','BalanceController@transferStore')->name('transfer.store');  
+    Route::get('transfer','FirebaseService@transfer')->name('balance.transfer');
+    Route::post('confirm-transfer','FirebaseService@confirmTransfer')->name('confirm.transfer');
+    Route::post('transfer','FirebaseService@transferStore')->name('transfer.store');
 
-    Route::get('historic','BalanceController@historic')->name('admin.historic');
-    Route::any('historic-search','BalanceController@searchHistoric')->name('historic.search');
-    Route::get('balance/where','BalanceController@testWhere')->name('admin.where');
+    Route::get('historic','FirebaseService@historic')->name('admin.historic');
+    Route::any('historic-search','FirebaseService@searchHistoric')->name('historic.search');
+    Route::get('balance/where','FirebaseService@testWhere')->name('admin.where');
 });
 
 Route::get('/','Site\SiteController@index')->name('home');
